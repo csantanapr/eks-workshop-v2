@@ -19,7 +19,10 @@ This will make the following changes to your lab environment:
 
 ## Argo Workflows
 [Argo Workflows](https://github.com/argoproj/argo-workflows) is an open-source, Kubernetes-native workflow engine designed for running complex jobs and orchestrating parallel tasks. It allows users to define, run, and manage workflows directly within their Kubernetes cluster. Argo Workflows provides a rich set of features including DAG-based dependencies, parameterization, and artifact management. It is widely used for CI/CD pipelines, machine learning, and data processing tasks.
-![Kubernetes Diagram with Argo Workflows](https://github.com/argoproj/argo-workflows/raw/master/docs/assets/screenshot.png)'
+
+![Argo Workflows UI](https://github.com/argoproj/argo-workflows/raw/master/docs/assets/screenshot.png)'
+
+![Argo Workflows Architecture](https://argoproj.github.io/argo-workflows/assets/diagram.png)
 
 
 
