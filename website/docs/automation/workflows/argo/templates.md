@@ -300,6 +300,79 @@ See how `5` pods were run at the same time, and that their names have the item v
 Change the **withSequence** to print the numbers 10 to 20.
 
 
+## Workflow Templates
+
+**Workflow templates** (not to be confused with a template) allow you to create a library of code that can be reused.
+They're similar to pipelines in Jenkins.
+
+Workflow templates have a different `kind` to a workflow, but are otherwise very similar:
+
+```yaml
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
+metadata:
+  name: hello
+spec:
+  entrypoint: main
+  templates:
+    - name: main
+      container:
+        image: docker/whalesay
+        command: [ cowsay ]
+```
+
+Let's create this workflow template:
+
+```bash
+$ argo template create ~/environment/eks-workshop/modules/automation/workflows/argo/templates/hello-workflowtemplate.yaml
+```
+
+
+You can also manage templates using `kubectl`:
+
+```bash
+$ kubectl apply -f ~/environment/eks-workshop/modules/automation/workflows/argo/templates/hello-workflowtemplate.yaml
+```
+
+This allows you to use GitOps to manage your templates.
+
+To submit a template, you can use the UI or the CLI:
+
+```bash
+$ argo submit --watch --from workflowtemplate/hello
+```
+
+
+You should see:
+
+```shell
+STEP            TEMPLATE  PODNAME      DURATION  MESSAGE
+ ✔ hello-c622t  main      hello-c622t  33s
+```
+
+Lets take a look at the workflow you created:
+
+```bash
+$ argo get @latest -o yaml
+```
+
+Look for the workflow specification in the output:
+
+```yaml
+spec:
+  workflowTemplateRef:
+    name: hello
+```
+
+Note how the specification of the workflow is actually a reference to the template.
+
+## Exercise
+
+* Use the user interface to submit a workflow template:
+* Update the workflow template to add some parameters (e.g. to print a message). Use `argo submit --from` to submit it
+  with different parameters.
+
+
 ## Cron Workflows
 A **cron workflow** is a workflow that runs on a cron schedule:
 
