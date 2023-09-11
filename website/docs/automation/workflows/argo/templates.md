@@ -355,3 +355,15 @@ An exit handler can be run at the end of a template, or at the end of a workflow
 end of the workflow.
 
 Learn more about [exit handlers](https://argoproj.github.io/argo-workflows/walk-through/exit-handlers/), as well as their close cousin, [lifecycle hooks](https://argoproj.github.io/argo-workflows/lifecyclehook/), in the Argo Workflows documentation.
+
+
+# Conclusion
+Let's recap:
+
+* A workflow consists of one or more templates.
+* One template is the **entrypoint** and it runs first.
+* Some templates do **work**, such as a container templates.
+* Other templates **orchestrate** that work, such as DAG templates.
+* You can run tasks at the end of a template or workflow using an **exit handler**.
+
+Please [let us know what can be improved](https://github.com/csantanapr/argo-workflows-intro-course/issues).
