@@ -146,7 +146,7 @@ You can identify workflow pods by the `workflows.argoproj.io/workflow` label.
 
 You should see something like this:
 
-```
+```shell
 NAME                 READY   STATUS      RESTARTS   AGE
 container-m5664      0/2     Completed   0          5m21s
 template-tag-kqpc6   0/2     Completed   0          4m6s
@@ -203,7 +203,7 @@ $ argo submit --watch ~/environment/eks-workshop/modules/automation/workflows/ar
 
 You should see something like:
 
-```bash
+```shell
 STEP          TEMPLATE  PODNAME              DURATION  MESSAGE
  ✔ dag-shxn5  main
  ├─✔ a        whalesay       dag-shxn5-289972251  6s
@@ -251,7 +251,7 @@ $ argo submit --watch ~/environment/eks-workshop/modules/automation/workflows/ar
 
 You should see something like:
 
-```bash
+```shell
 STEP                                 TEMPLATE  PODNAME                      DURATION  MESSAGE
  ✔ with-items-4qzg9                  main
  ├─✔ print-message(0:hello world)    whalesay  with-items-4qzg9-465751898   7s
@@ -283,7 +283,7 @@ $ argo submit --watch ~/environment/eks-workshop/modules/automation/workflows/ar
 ```
 
 
-```bash
+```shell
 STEP                     TEMPLATE  PODNAME                         DURATION  MESSAGE
  ✔ with-sequence-8nrp5   main
  ├─✔ print-message(0:0)  whalesay  with-sequence-8nrp5-3678575801  9s
@@ -340,7 +340,7 @@ $ argo submit --watch ~/environment/eks-workshop/modules/automation/workflows/ar
 
 You should see:
 
-```bash
+```shell
 STEP                   TEMPLATE  PODNAME                        DURATION  MESSAGE
  ✔ exit-handler-plvg7  main
  ├─✔ a                 whalesay  exit-handler-plvg7-1651124468  5s

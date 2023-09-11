@@ -49,7 +49,7 @@ $ argo submit --watch ~/environment/eks-workshop/modules/automation/workflows/ar
 
 You should see:
 
-```bash
+```shell
 STEP                       TEMPLATE  PODNAME                 DURATION  MESSAGE
  ✔ input-parameters-mvtcw  main      input-parameters-mvtcw  8s
 ```
@@ -63,7 +63,7 @@ $ argo submit --watch ~/environment/eks-workshop/modules/automation/workflows/ar
 
 You should see:
 
-```yaml
+```shell
 STEP                       TEMPLATE  PODNAME                 DURATION  MESSAGE
  ✔ input-parameters-lwkdx  main      input-parameters-lwkdx  5s
 ```
@@ -76,7 +76,7 @@ $ argo logs @latest
 
 You should see:
 
-```bash
+```shell
  ______________
 < Welcome to Argo! >
  --------------
