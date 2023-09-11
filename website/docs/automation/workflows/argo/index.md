@@ -12,10 +12,8 @@ $ curl -s https://raw.githubusercontent.com/csantanapr/argo-workflows-intro-cour
 ```
 
 This will make the following changes to your lab environment:
-- Install Argo Events
 - Install Argo Workflows
 
-You can view the Terraform that applies these changes [here](https://github.com/VAR::MANIFESTS_OWNER/VAR::MANIFESTS_REPOSITORY/tree/VAR::MANIFESTS_REF/manifests/modules/automation/workflows/argo/.workshop/terraform).
 
 :::
 
