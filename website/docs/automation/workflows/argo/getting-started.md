@@ -32,3 +32,62 @@ Then you can wait for it to complete (around 1m):
 ```bash timeout=120
 $ kubectl -n argo wait workflows/hello --for condition=Completed --timeout 2m
 ```
+
+We need to expose argo-server on LoadBalancer to reach the UI
+
+```bash
+$ kubectl expose svc argo-server -n argo --port 80 --target-port 2746 --type LoadBalancer --name argo-server-lb
+```
+
+Now get the URL to access UI
+```bash
+$ echo "Argo URL: http://$(kubectl get svc -n argo argo-server-lb -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')"
+```
+
+## Run a workflow
+
+Open the "Argo Server" tab and you should see the user interface:
+
+![UI](../assets/ui.png)
+
+Lets start a workflow from the user interface:
+
+Click "Submit new workflow":
+
+![UI](../assets/submit-01.png)
+
+Click "Edit using full workflow options". You should see something similar to this:
+
+![UI](../assets/submit-02.png)
+
+Paste this YAML into the editor:
+
+```yaml
+metadata:
+  generateName: hello-world-
+  namespace: argo
+spec:
+  entrypoint: main
+  templates:
+  - name: main
+    container:
+      image: docker/whalesay
+      command: ["cowsay"]
+```
+
+Click "Create". You will see a diagram of the workflow. The yellow icon shows that it is pending, after a few seconds it'll turn blue to indicate it is running, and finally green to show that it has completed successfully:
+
+![UI](../assets/running.png)
+
+After about 30s, the icon will change to green:
+
+![UI](../assets/green.png)
+
+## Exercise
+
+Take a few minutes to play around with the user interface. Find out how to:
+
+* List workflows.
+* View a workflow.
+* Resubmit a completed workflow.
+
