@@ -43,33 +43,40 @@ See how the workflow itself has arguments?
 
 Run it:
 
-`argo submit --watch input-parameters-workflow.yaml`{{execute}}
+```bash
+$ argo submit --watch ~/environment/eks-workshop/modules/automation/workflows/argo/inputs-and-outputs/input-parameters-workflow.yaml
+```
 
 You should see:
 
-```
+```bash
 STEP                       TEMPLATE  PODNAME                 DURATION  MESSAGE
  ✔ input-parameters-mvtcw  main      input-parameters-mvtcw  8s
 ```
 
 If a workflow has parameters, you can change the parameters using `-p` using the CLI:
 
-`argo submit --watch input-parameters-workflow.yaml -p message='Welcome to Argo!'`{{execute}}
+```bash
+$ argo submit --watch ~/environment/eks-workshop/modules/automation/workflows/argo/inputs-and-outputs/input-parameters-workflow.yaml -p message='Welcome to Argo!'
+```
+
 
 You should see:
 
-```
+```yaml
 STEP                       TEMPLATE  PODNAME                 DURATION  MESSAGE
  ✔ input-parameters-lwkdx  main      input-parameters-lwkdx  5s
 ```
 
 Let's check the output in the logs:
 
-`argo logs @latest`{{execute}}
+```bash
+$ argo logs @latest
+```
 
 You should see:
 
-```
+```bash
  ______________
 < Welcome to Argo! >
  --------------
@@ -91,7 +98,7 @@ You should see:
 Output parameters can be from a few places, but typically the most versatile is from a file. In this example, the
 container creates a file with a message in it:
 
-```
+```yaml
   - name: whalesay
     container:
       image: docker/whalesay
@@ -107,7 +114,7 @@ container creates a file with a message in it:
 In a DAG template and steps template, you can reference the output from one task, as the input to another
 task using a **template tag**:
 
-```
+```yaml
       dag:
         tasks:
           - name: generate-parameter
@@ -124,15 +131,19 @@ task using a **template tag**:
 
 See the complete workflow:
 
-`cat parameters-workflow.yaml`{{execute}}
+```bash
+$ cat ~/environment/eks-workshop/modules/automation/workflows/argo/inputs-and-outputs/parameters-workflow.yaml
+```
 
 Run it:
 
-`argo submit --watch parameters-workflow.yaml`{{execute}}
+```bash
+$ argo submit --watch ~/environment/eks-workshop/modules/automation/workflows/argo/inputs-and-outputs/parameters-workflow.yaml
+```
 
 You should see:
 
-```
+```shell
 STEP                     TEMPLATE       PODNAME                      DURATION  MESSAGE
  ✔ parameters-vjvwg      main
  ├─✔ generate-parameter  whalesay       parameters-vjvwg-4019940555  43s

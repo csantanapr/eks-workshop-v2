@@ -69,7 +69,7 @@ and `}}` and will be replaced when the template is executed.
 
 What tags are available to use depends on the template type, and there are a number of global ones you can use, such as `{{workflow.name}}`, which is replaced by the workflow's name:
 
-```
+```yaml
     - name: main
       container:
         image: docker/whalesay
@@ -96,7 +96,7 @@ $ argo logs @latest
 
 You should see something like:
 
-```bash
+```shell
  __________________________
 < hello template-tag-kqpc6 >
  --------------------------
