@@ -300,6 +300,41 @@ See how `5` pods were run at the same time, and that their names have the item v
 Change the **withSequence** to print the numbers 10 to 20.
 
 
+## Cron Workflows
+A **cron workflow** is a workflow that runs on a cron schedule:
+
+```yaml
+apiVersion: argoproj.io/v1alpha1
+kind: CronWorkflow
+metadata:
+  name: hello-cron
+spec:
+  schedule: "* * * * *"
+  workflowSpec:
+    entrypoint: main
+    templates:
+      - name: main
+        container:
+          image: docker/whalesay
+```
+
+When it should be run is set in the `schedule` field, in the example every minute.
+
+Lets created this cron workflow:
+
+```bash
+$ argo cron create ~/environment/eks-workshop/modules/automation/workflows/argo/templates/hello-cronworkflow.yaml
+```
+
+You'll need to wait for up to a minute to see the workflow run.
+
+## Exercise
+
+Cron workflows can be submitted immediately from the CLI or the UI. Find out how.
+
+
+
+
 ## Orchestration Templates
 We learned that a DAG template is a type of *orchestration* template. What other types of *orchestration* templates are there?
 
